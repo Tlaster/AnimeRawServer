@@ -1,0 +1,10 @@
+<web-app>
+	<welcome-file-list>
+		<welcome-file>MainPage.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>   
+		<servlet-name>AnimateInfo</servlet-name>   
+		<servlet-class>servlet.AnimateInfo</servlet-class>   
+	</servlet> 
+</web-app>
+  
