@@ -3,14 +3,15 @@ package servlet;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
+import java.nio.file.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
 import model.*;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import net.sf.json.*;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  * Servlet implementation class AnimateInfo
@@ -57,7 +58,6 @@ public class AnimateInfo extends HttpServlet
 		}
 		catch (Exception e) 
 		{ 
-			
 		}
 		JSONObject jsonObject = JSONObject.fromObject(jb.toString());
 		int id = jsonObject.getInt("id");
@@ -90,6 +90,7 @@ public class AnimateInfo extends HttpServlet
 		File folder = new File(dirPath);
 		for(File file : folder.listFiles())
 			list.add(new AnimateSetModel(file.getName(),file.getPath()));
+			//list.add(new AnimateSetModel(FilenameUtils.removeExtension(file.getName()),file.getPath()));
 		item.setSetList(list);
 		response.getWriter().write(JSONObject.fromObject(item).toString());
 		System.out.println(JSONObject.fromObject(item).toString());

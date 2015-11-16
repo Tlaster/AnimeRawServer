@@ -12,7 +12,7 @@ $.ajax({url:"AnimateInfo",type:"post",dataType:"json",data:"{ id:<%=request.getP
     var table = $('<table>').appendTo($('#data'));
     $.each(data.setList, function(i, item) {
         var row = $('<tr>').appendTo(table);
-        $('<td>').text(item.fileName).appendTo(row);
+        $('<a>').attr("href","AnimatePlayPage.jsp?id="+data.ID+"&file="+item.fileName).text(item.fileName).appendTo($('<td>').appendTo(row));
         $('<td>').text(item.itemPath).appendTo(row);
     });
 }});

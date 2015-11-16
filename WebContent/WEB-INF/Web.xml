@@ -6,5 +6,13 @@
 		<servlet-name>AnimateInfo</servlet-name>   
 		<servlet-class>servlet.AnimateInfo</servlet-class>   
 	</servlet> 
+	<servlet>
+    	<servlet-name>AnimateVideo</servlet-name>
+    	<servlet-class>servlet.AnimateVideo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>AnimateVideo</servlet-name>
+    	<url-pattern>/AnimateVideo/*</url-pattern>
+	</servlet-mapping>
 </web-app>
   
