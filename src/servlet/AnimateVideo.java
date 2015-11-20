@@ -27,7 +27,7 @@ public class AnimateVideo extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	private final String _connectionUrl = "jdbc:sqlserver://localhost:1433;" +
-			"database=AnimateDataBase;integratedSecurity=true;";
+			"database=AnimateDatabase;integratedSecurity=true;";
 
     private static final int DEFAULT_BUFFER_SIZE = 10240; // ..bytes = 10KB.
     /**
@@ -92,7 +92,6 @@ public class AnimateVideo extends HttpServlet
             throws IOException
     {
 		String reqFile = request.getPathInfo();
-		System.out.println(reqFile);
 		String[] result = reqFile.split("[/]+");
 		String filePath = "";
 		try 
@@ -106,7 +105,7 @@ public class AnimateVideo extends HttpServlet
 					try(ResultSet rs=stmt.executeQuery(SQL))
 					{
 						rs.next();
-						filePath = rs.getString(1) +"\\" + result[2];
+						filePath = rs.getString(1) +"\\" + result[2] + ".mp4";
 					}
 				}
 			}

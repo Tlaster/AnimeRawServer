@@ -12,7 +12,6 @@ $.getJSON('AnimateList', function(data) {
     $.each(data, function(i, item) {
         var row = $('<tr>').appendTo(table);
         $('<a>').attr("href","AnimateInfoPage.jsp?id="+item.ID).text(item.name).appendTo($('<td>').appendTo(row));
-        $('<a>').text(item.dirPath).appendTo($('<td>').appendTo(row));
     });
 });
 </script>

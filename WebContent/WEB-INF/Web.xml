@@ -10,9 +10,17 @@
     	<servlet-name>AnimateVideo</servlet-name>
     	<servlet-class>servlet.AnimateVideo</servlet-class>
 	</servlet>
+	<servlet>
+    	<servlet-name>AnimateThumb</servlet-name>
+    	<servlet-class>servlet.AnimateThumb</servlet-class>
+	</servlet>
 	<servlet-mapping>
     	<servlet-name>AnimateVideo</servlet-name>
     	<url-pattern>/AnimateVideo/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+    	<servlet-name>AnimateThumb</servlet-name>
+    	<url-pattern>/AnimateThumb/*</url-pattern>
 	</servlet-mapping>
 </web-app>
   

@@ -21,7 +21,7 @@ public class AnimateInfo extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 	String _connectionUrl = "jdbc:sqlserver://localhost:1433;" +
-			"database=AnimateDataBase;integratedSecurity=true;";
+			"database=AnimateDatabase;integratedSecurity=true;";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -61,7 +61,7 @@ public class AnimateInfo extends HttpServlet
 		}
 		JSONObject jsonObject = JSONObject.fromObject(jb.toString());
 		int id = jsonObject.getInt("id");
-		ArrayList<AnimateSetModel> list = new ArrayList<AnimateSetModel>();
+		ArrayList<String> list = new ArrayList<String>();
 		AnimateInfoModel item = new AnimateInfoModel();
 		String dirPath = "";
 		try 
@@ -89,8 +89,10 @@ public class AnimateInfo extends HttpServlet
 		if(dirPath.length() == 0) return;
 		File folder = new File(dirPath);
 		for(File file : folder.listFiles())
-			list.add(new AnimateSetModel(file.getName(),file.getPath()));
-			//list.add(new AnimateSetModel(FilenameUtils.removeExtension(file.getName()),file.getPath()));
+		{
+			if(file.getName().endsWith(".mp4"))
+				list.add(FilenameUtils.removeExtension(file.getName()));
+		}
 		item.setSetList(list);
 		response.getWriter().write(JSONObject.fromObject(item).toString());
 		System.out.println(JSONObject.fromObject(item).toString());
