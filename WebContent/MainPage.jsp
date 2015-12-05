@@ -9,9 +9,13 @@
 <script>
 $.getJSON('AnimateList', function(data) {
     var table = $('<table>').appendTo($('#data'));
+    var header = $('<tr>').appendTo(table);
+    $('<td>').text("Name").appendTo(header);
+    $('<td>').text("LastUpdate").appendTo(header);
     $.each(data, function(i, item) {
         var row = $('<tr>').appendTo(table);
         $('<a>').attr("href","AnimateInfoPage.jsp?id="+item.ID).text(item.name).appendTo($('<td>').appendTo(row));
+        $('<td>').text(item.lastUpdate).appendTo(row);
     });
 });
 </script>

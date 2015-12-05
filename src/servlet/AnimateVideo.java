@@ -93,7 +93,7 @@ public class AnimateVideo extends HttpServlet
     {
 		String reqFile = request.getPathInfo();
 		String[] result = reqFile.split("[/]+");
-		String filePath = "";
+		String filePath = null;
 		try 
 		{
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -101,12 +101,20 @@ public class AnimateVideo extends HttpServlet
 			{
 				try(Statement stmt = con.createStatement())
 				{
-		    		String SQL = "select DirPath from AnimateList where ID = " + result[1];
+					int clickcount = 0;
+		    		String SQL = "select FilePath,ClickCount from SetDetail where ID = " + result[1] + "and FileName = " + result[2];
 					try(ResultSet rs=stmt.executeQuery(SQL))
 					{
 						rs.next();
-						filePath = rs.getString(1) +"\\" + result[2] + ".mp4";
+						filePath = rs.getString(1);
+						clickcount = rs.getInt(2);
 					}
+					if(filePath != null)
+					{
+						SQL = "update SetDetail set ClickCount = " + ++clickcount +" where ID = " + result[1] + "and FileName = " + result[2];
+						stmt.executeUpdate(SQL);
+					}
+					else return;
 				}
 			}
 		}

@@ -49,11 +49,11 @@ public class AnimateList extends HttpServlet {
 			{
 				try(Statement stmt = con.createStatement())
 				{
-		    		String SQL = "select Name,ID from AnimateList";
+		    		String SQL = "select ID,Name,LastUpdate from AnimateList";
 					try(ResultSet rs=stmt.executeQuery(SQL))
 					{
 						while(rs.next())
-							list.add(new AnimateListModel(rs.getString(1),rs.getInt(2)));
+							list.add(new AnimateListModel(rs.getInt(1),rs.getString(2),rs.getString(3)));
 					}
 				}
 			}

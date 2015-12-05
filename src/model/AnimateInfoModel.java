@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class AnimateInfoModel
 {
-	private ArrayList<String> _setList;
+	private ArrayList<AnimateSetModel> _setList;
 	private String _name;
 	private int _id;
 	public AnimateInfoModel()
 	{
 		this(0,null,null);
 	}
-	public AnimateInfoModel(int id,String name,ArrayList<String> list)
+	public AnimateInfoModel(int id,String name,ArrayList<AnimateSetModel> list)
 	{
 		_id = id;
 		_name = name;
@@ -25,7 +25,7 @@ public class AnimateInfoModel
 	{
 		_id = value;
 	}
-	public void setSetList(ArrayList<String> value)
+	public void setSetList(ArrayList<AnimateSetModel> value)
 	{
 		_setList = value;
 	}
@@ -37,7 +37,7 @@ public class AnimateInfoModel
 	{
 		return _id;
 	}
-	public ArrayList<String> getSetList()
+	public ArrayList<AnimateSetModel> getSetList()
 	{
 		return _setList;
 	}

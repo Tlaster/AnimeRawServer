@@ -5,7 +5,7 @@
 <head>
 <style type="text/css">
 li{ padding:4px; list-style-type: none; float: left; }
-a{ text-align:center;display:block; }
+a{ text-align:center; display:block; }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
@@ -18,8 +18,9 @@ $.ajax({url:"AnimateInfo",type:"post",dataType:"json",data:"{ id:<%=request.getP
         var row = $('<li>').appendTo(table);
         var imgdiv = $('<div>').appendTo(row);
         var herfdiv = $('<div>').appendTo(row);
-        $('<img>').attr("src","AnimateThumb/"+data.ID+"/"+item).attr("width","196px").attr("height","110px").appendTo($('<a>').attr("href","AnimatePlayPage.jsp?id="+data.ID+"&file="+item).appendTo(imgdiv));
-        $('<a>').attr("href","AnimatePlayPage.jsp?id="+data.ID+"&file="+item).text(item).appendTo(herfdiv);
+        $('<img>').attr("src","AnimateThumb/"+data.ID+"/"+item.name).attr("width","196px").attr("height","110px").appendTo($('<a>').attr("href","AnimatePlayPage.jsp?id="+data.ID+"&file="+item.name).appendTo(imgdiv));
+        $('<a>').attr("href","AnimatePlayPage.jsp?id="+data.ID+"&file="+item.name).text(item.name).appendTo(herfdiv);
+        $('<div>').attr("text-align","right").text("Click Count:"+item.clickCount).appendTo(herfdiv);
     });
 }});
 </script>

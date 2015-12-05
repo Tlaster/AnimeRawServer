@@ -1,28 +1,27 @@
 package model;
 
-public class AnimateSetModel 
-{
-	private String _fileName;
-	private String _itemPath;
-	public AnimateSetModel(String fileName,String itemPath)
+public class AnimateSetModel {
+	private String _name;
+	private int _clickCount;
+	public AnimateSetModel(String name,int clickCount)
 	{
-		_fileName = fileName;
-		_itemPath = itemPath;
+		_name = name;
+		_clickCount = clickCount;
 	}
-	public void setFileName(String value)
+	public void setName(String value)
 	{
-		_fileName = value;
+		_name = value;
 	}
-	public void setItemPath(String value)
+	public void setClickCount(int value)
 	{
-		_itemPath = value;
+		_clickCount = value;
 	}
-	public String getFileName()
+	public String getName()
 	{
-		return _fileName;
+		return _name;
 	}
-	public String getItemPath()
+	public int getClickCount()
 	{
-		return _itemPath;
+		return _clickCount;
 	}
 }

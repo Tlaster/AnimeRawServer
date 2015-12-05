@@ -44,7 +44,7 @@ public class AnimateThumb extends HttpServlet {
 		String reqFile = request.getPathInfo();
 		System.out.println(reqFile);
 		String[] result = reqFile.split("[/]+");
-		String filePath = "";
+		String filePath = null;
 		try 
 		{
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -52,11 +52,11 @@ public class AnimateThumb extends HttpServlet {
 			{
 				try(Statement stmt = con.createStatement())
 				{
-		    		String SQL = "select DirPath from AnimateList where ID = " + result[1];
+		    		String SQL = "select FileThumb from SetDetail where ID = " + result[1] + "and FileName = " + result[2];
 					try(ResultSet rs=stmt.executeQuery(SQL))
 					{
 						rs.next();
-						filePath = rs.getString(1) +"\\" + result[2] + ".png";
+						filePath = rs.getString(1);
 					}
 				}
 			}
@@ -65,6 +65,7 @@ public class AnimateThumb extends HttpServlet {
 		{
 			e.printStackTrace();
 		}
+		if(filePath == null) return;
 		File file = new File(filePath);
 		response.setContentType("image/png");
 		try(ServletOutputStream out = response.getOutputStream())

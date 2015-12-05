@@ -61,9 +61,9 @@ public class AnimateInfo extends HttpServlet
 		}
 		JSONObject jsonObject = JSONObject.fromObject(jb.toString());
 		int id = jsonObject.getInt("id");
-		ArrayList<String> list = new ArrayList<String>();
+		ArrayList<AnimateSetModel> list = new ArrayList<AnimateSetModel>();
 		AnimateInfoModel item = new AnimateInfoModel();
-		String dirPath = "";
+		item.setID(id);
 		try 
 		{
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -71,13 +71,17 @@ public class AnimateInfo extends HttpServlet
 			{
 				try(Statement stmt = con.createStatement())
 				{
-		    		String SQL = "select Name,DirPath from AnimateList where ID = " + id;
+		    		String SQL = "select FileName,ClickCount from SetDetail where ID = " + id;
+					try(ResultSet rs=stmt.executeQuery(SQL))
+					{
+						while(rs.next())
+							list.add(new AnimateSetModel(rs.getString(1),rs.getInt(2)));
+					}
+		    		SQL = "select Name from AnimateList where ID = " + id;
 					try(ResultSet rs=stmt.executeQuery(SQL))
 					{
 						rs.next();
 						item.setName(rs.getString(1));
-						item.setID(id);
-						dirPath = rs.getString(2);
 					}
 				}
 			}
@@ -86,16 +90,8 @@ public class AnimateInfo extends HttpServlet
 		{
 			e.printStackTrace();
 		}
-		if(dirPath.length() == 0) return;
-		File folder = new File(dirPath);
-		for(File file : folder.listFiles())
-		{
-			if(file.getName().endsWith(".mp4"))
-				list.add(FilenameUtils.removeExtension(file.getName()));
-		}
 		item.setSetList(list);
 		response.getWriter().write(JSONObject.fromObject(item).toString());
-		System.out.println(JSONObject.fromObject(item).toString());
 	}
 
 }
