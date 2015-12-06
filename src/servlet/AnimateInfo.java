@@ -82,6 +82,12 @@ public class AnimateInfo extends HttpServlet
 					{
 						rs.next();
 						item.setName(rs.getString(1));
+					}		    		
+					SQL = "select Description from AnimateInfo where ID = " + id;
+					try(ResultSet rs=stmt.executeQuery(SQL))
+					{
+						rs.next();
+						item.setDescription(rs.getString(1));
 					}
 				}
 			}

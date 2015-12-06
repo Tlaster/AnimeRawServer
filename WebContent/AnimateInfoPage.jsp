@@ -13,6 +13,7 @@ a{ text-align:center; display:block; }
 <script>
 $.ajax({url:"AnimateInfo",type:"post",dataType:"json",data:"{ id:<%=request.getParameter("id") %> }",success:function(data) {
 	$('<h1>').text(data.name).appendTo($('#data'));
+	$('<h5>').text(data.description).appendTo($('#data'));
     var table = $('<ul>').appendTo($('#data'));
     $.each(data.setList, function(i, item) {
         var row = $('<li>').appendTo(table);
